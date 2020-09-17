@@ -7,9 +7,29 @@
     "build": "next build",
     "start": "next start"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,md}": [
+      "prettier --single-quote --write",
+      "eslint",
+      "git add"
+    ],
+    "/**/*.+(css|scss)": [
+      "./node_modules/.bin/stylelint *.css --fix",
+      "./node_modules/.bin/prettier --write",
+      "git add"
+    ]
+  },
   "dependencies": {
     "next": "9.5.3",
     "react": "16.13.1",
     "react-dom": "16.13.1"
+  },
+  "devDependencies": {
+    "stylelint": "^13.7.1"
   }
 }
